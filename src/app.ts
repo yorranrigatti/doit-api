@@ -1,8 +1,7 @@
-import "express-async-errors";
 import express from "express";
 import { appRoutes } from "./routes";
-import { Request, Response } from "express";
 import { errorMiddleware } from "./middlewares/error.middleware";
+import { Request, Response } from "express";
 
 const app = express();
 
@@ -12,10 +11,10 @@ appRoutes(app);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
-    message: "Doit - API",
+    message: "Hello World",
   });
 });
 
 app.use(errorMiddleware);
 
-export default app;
+app.listen(3000);
