@@ -1,3 +1,4 @@
+import "express-async-errors";
 import express from "express";
 import { appRoutes } from "./routes";
 import { errorMiddleware } from "./middlewares/error.middleware";
@@ -11,7 +12,7 @@ appRoutes(app);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
-    message: "Hello World",
+    message: "Doit - API",
   });
 });
 
