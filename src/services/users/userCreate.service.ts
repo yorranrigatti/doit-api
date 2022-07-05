@@ -25,7 +25,7 @@ export default class UserCreateService {
     const user = userRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
     await userRepository.save(user);

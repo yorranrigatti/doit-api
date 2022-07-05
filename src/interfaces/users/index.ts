@@ -12,3 +12,10 @@ export interface IUserCreateReturn {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface IUserUpdate {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+}

@@ -2,14 +2,6 @@ import { Request, Response } from "express";
 
 
 export default class ClientController {
-  static async index(req: Request, res: Response) {
-    const listClients = new ListClientsService();
-
-    const clients = await listClients.execute();
-
-    return res.json(clients);
-  }
-
   static async show(req: Request, res: Response) {
     const { id } = req.params;
 
