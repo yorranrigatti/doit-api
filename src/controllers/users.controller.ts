@@ -1,5 +1,6 @@
 import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
+import UserLoginService from "../services/sessions/loginUser.service";
 
 import UserCreateService from "../services/users/userCreate.service";
 import UserDeleteService from "../services/users/userDelete.service";
@@ -32,6 +33,19 @@ export default class UserController {
       data: instanceToPlain(result),
     });
   }
+
+  static async session(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    const auth = new UserLoginService();
+
+    const token = await auth.execute({ email, password });
+
+    return res
+      .status(200)
+      .json(token);
+  }
+
   static async index(req: Request, res: Response) {
     const per_page = req.query.per_page as string;
     const page = req.query.page as string;
@@ -55,6 +69,7 @@ export default class UserController {
 
     return res.json(instanceToPlain(user));
   }
+
   static async update(req: Request, res: Response) {
     const { name, email, password } = req.body;
     const { id } = req.params;
@@ -68,6 +83,7 @@ export default class UserController {
       data: instanceToPlain(user),
     });
   }
+
   static async delete(req: Request, res: Response) {
     const { id } = req.params;
 

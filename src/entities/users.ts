@@ -4,8 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  JoinColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import Task from "./tasks";
 
 @Entity("users")
 class User {
@@ -26,6 +29,14 @@ class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany((type) => Task, (tasks) => tasks.user, {
+    eager: true,
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn()
+  tasks: Task[];
 
   constructor() {
     if (!this.id) {

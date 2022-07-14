@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import User from "../../entities/users";
 import { IList } from "../../interfaces/list";
-import { IUserCreateReturn } from "../../interfaces/users";
 import { getUrl } from "../../utils";
 
 export default class UsersListService {
@@ -9,7 +8,7 @@ export default class UsersListService {
     const userRepository = AppDataSource.getRepository(User);
 
     if (!per_page) {
-      per_page = 5;
+      per_page = 20;
     }
 
     if (!page) {
